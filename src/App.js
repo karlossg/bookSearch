@@ -1,33 +1,20 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+// import type { Match } from 'react-router-dom';
 import './App.css';
+import Landing from './Landing';
 
-class App extends Component {
+const FourOhFour = () => <h1>404</h1>;
 
-  getData() {
-    fetch('https://gwo.pl/booksApi/v1/search?query=historia')
-      .then(response => response.json())
-      .catch(error => console.error('Error:', error))
-      .then(data => console.log(data))
-  }
-
-  componentDidMount() {
-    this.getData();
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
-}
+const App = () => (
+  <BrowserRouter>
+    <div className="app">
+      <Switch>
+        <Route exact path="/" component={Landing} />
+        <Route component={FourOhFour} />
+      </Switch>
+    </div>
+  </BrowserRouter>
+);
 
 export default App;
