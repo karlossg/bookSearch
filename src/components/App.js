@@ -3,14 +3,16 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 // import type { Match } from 'react-router-dom';
 import './App.css';
 import Landing from './Landing';
+import Results from './Results';
 
-const FourOhFour = () => <h1>404</h1>;
+const FourOhFour = () => <h1>404: Page not found!</h1>;
 
 const App = () => (
   <BrowserRouter>
     <div className="app">
       <Switch>
         <Route exact path="/" component={Landing} />
+        <Route exact path="/search" component={Results} />
         <Route component={FourOhFour} />
       </Switch>
     </div>
