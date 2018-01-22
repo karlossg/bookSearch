@@ -10,22 +10,13 @@ class Results extends Component {
   }
 
   componentDidMount() {
-    api
-      .getBooks('polski')
-      .then(resp => {
-        // resp.data.map(item => books.push(data));
-
-        return resp.data;
-      })
-      .then(
-        function(resp) {
-          this.setState(function() {
-            return {
-              books: resp
-            };
-          });
-        }.bind(this)
-      );
+    api.getBooks('język polski').then(resp => {
+      this.setState(function() {
+        return {
+          books: resp.data
+        };
+      });
+    });
   }
 
   render() {
