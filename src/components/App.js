@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 // import type { Match } from 'react-router-dom';
-import './App.css';
+
 import Landing from './Landing';
 import Results from './Results';
 

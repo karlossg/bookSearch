@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import uuid from 'uuid';
 import api from '../utils/api';
 import BookDetail from './BookDetail';
+import Pagination from './Pagination';
 
 const Wrapper = styled.section`
   display: flex;
@@ -19,6 +20,13 @@ class Results extends Component {
     this.state = {
       books: []
     };
+
+    this.onChangePage = this.onChangePage.bind(this);
+  }
+
+  onChangePage(pageOfItems) {
+    // update state with new page of items
+    this.setState({ pageOfItems: pageOfItems });
   }
 
   componentDidMount() {
@@ -32,7 +40,12 @@ class Results extends Component {
   }
 
   render() {
-    return <Wrapper>{this.state.books.map(book => <BookDetail key={uuid()} book={book} />)}</Wrapper>;
+    return (
+      <div>
+        <Wrapper>{this.state.books.map(book => <BookDetail key={uuid()} book={book} />)}</Wrapper>
+        <Pagination items={this.state.books} onChangePage={this.onChangePage} />
+      </div>
+    );
   }
 }
 
