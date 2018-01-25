@@ -26,11 +26,9 @@ class BookDetail extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <Wrapper>
         <Image alt={`${this.props.book.cover} Show Poster`} src={`${this.props.book.cover}`} />
-
         <div>
           <h3>{this.props.book.title}</h3>
           <h4>({this.props.book.author})</h4>

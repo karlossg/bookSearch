@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import _ from 'lodash';
-// const propTypes = {
-//   items: React.PropTypes.array.isRequired,
-//   onChangePage: React.PropTypes.func.isRequired,
-//   initialPage: React.PropTypes.number
-// }
-
-// const defaultProps = {
-//   initialPage: 1
-// }
 
 class Pagination extends Component {
   constructor(props) {
@@ -56,7 +48,7 @@ class Pagination extends Component {
     currentPage = currentPage || 1;
 
     // default page size is 10
-    pageSize = pageSize || 10;
+    pageSize = pageSize || 6;
 
     // calculate total pages
     var totalPages = Math.ceil(totalItems / pageSize);
@@ -68,11 +60,11 @@ class Pagination extends Component {
       endPage = totalPages;
     } else {
       // more than 10 total pages so calculate start and end pages
-      if (currentPage <= 6) {
+      if (currentPage <= 10) {
         startPage = 1;
         endPage = 10;
       } else if (currentPage + 4 >= totalPages) {
-        startPage = totalPages - 9;
+        startPage = totalPages - 5;
         endPage = totalPages;
       } else {
         startPage = currentPage - 5;
@@ -102,6 +94,7 @@ class Pagination extends Component {
   }
 
   render() {
+    console.log(this.props);
     var pager = this.state.pager;
 
     if (!pager.pages || pager.pages.length <= 1) {
@@ -133,7 +126,14 @@ class Pagination extends Component {
   }
 }
 
-// Pagination.propTypes = propTypes;
-// Pagination.defaultProps = defaultProps;
+Pagination.propTypes = {
+  items: PropTypes.array.isRequired,
+  onChangePage: PropTypes.func.isRequired,
+  initialPage: PropTypes.number
+};
+
+Pagination.defaultProps = {
+  initialPage: 1
+};
 
 export default Pagination;

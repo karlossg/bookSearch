@@ -18,7 +18,8 @@ class Results extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      books: []
+      books: [],
+      pageOfItems: []
     };
 
     this.onChangePage = this.onChangePage.bind(this);
@@ -29,8 +30,9 @@ class Results extends Component {
     this.setState({ pageOfItems: pageOfItems });
   }
 
-  componentDidMount() {
-    api.getBooks('język polski').then(resp => {
+  componentWillMount() {
+    api.getBooks('język').then(resp => {
+      console.log(resp.data);
       this.setState(function() {
         return {
           books: resp.data
@@ -42,8 +44,10 @@ class Results extends Component {
   render() {
     return (
       <div>
-        <Wrapper>{this.state.books.map(book => <BookDetail key={uuid()} book={book} />)}</Wrapper>
-        <Pagination items={this.state.books} onChangePage={this.onChangePage} />
+        <Wrapper>
+          {this.state.books.map(item => <BookDetail key={uuid()} book={item} />)}
+          <Pagination items={this.state.books} onChangePage={this.onChangePage} />
+        </Wrapper>
       </div>
     );
   }
