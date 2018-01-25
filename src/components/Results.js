@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import uuid from 'uuid';
 import api from '../utils/api';
 import BookDetail from './BookDetail';
+
+const Wrapper = styled.section`
+  color: red;
+`;
 
 class Results extends Component {
   constructor(props) {
@@ -22,7 +27,11 @@ class Results extends Component {
   }
 
   render() {
-    return <div className="results">{this.state.books.map(book => <BookDetail key={uuid()} book={book} />)}</div>;
+    return (
+      <Wrapper>
+        <div>{this.state.books.map(book => <BookDetail key={uuid()} book={book} />)}</div>
+      </Wrapper>
+    );
   }
 }
 

@@ -1,4 +1,22 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
+
+const Wrapper = styled.section`
+  width: 32%;
+  border: 2px solid #333;
+  border-radius: 4px;
+  margin-bottom: 25px;
+  padding-right: 10px;
+  overflow: hidden;
+  color: black;
+  text-decoration: none;
+`;
+
+const Image = styled.img`
+  width: 50%;
+  float: left;
+  margin-right: 10px;
+`;
 
 class BookDetail extends Component {
   shouldComponentUpdate() {
@@ -8,13 +26,25 @@ class BookDetail extends Component {
   render() {
     console.log(this.props);
     return (
-      <div>
-        <img alt={`${this.props.book.cover} Show Poster`} src={`${this.props.book.cover}`} />
+      <Wrapper>
+        <Image alt={`${this.props.book.cover} Show Poster`} src={`${this.props.book.cover}`} />
 
-        <h3>{this.props.book.title}</h3>
-        <h4>({this.props.book.author})</h4>
-        <p>{this.props.book.isbn}</p>
-      </div>
+        <div>
+          <h3>{this.props.book.title}</h3>
+          <h4>({this.props.book.author})</h4>
+          <p>ISBN: {this.props.book.isbn}</p>
+          <p>MEN: {this.props.book.men}</p>
+          <p>liczba stron: {this.props.book.pages_count}</p>
+          <p>
+            poziom: {this.props.book.levels[0].school} / {this.props.book.levels[0].class}
+          </p>
+          <p>przedmiot: {this.props.book.subject}</p>
+          <p>rodzaj: {this.props.book.type}</p>
+          <a href={this.props.book.url} target="_blank">
+            Przejdź do księgarni
+          </a>
+        </div>
+      </Wrapper>
     );
   }
 }
