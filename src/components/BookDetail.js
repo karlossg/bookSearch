@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.section`
   width: 32%;
+  height: 400px;
   border: 2px solid #333;
   border-radius: 4px;
   margin-bottom: 25px;
@@ -13,7 +14,8 @@ const Wrapper = styled.section`
 `;
 
 const Image = styled.img`
-  width: 50%;
+  width: 40%;
+  height: 300px;
   float: left;
   margin-right: 10px;
 `;

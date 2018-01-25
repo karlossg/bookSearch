@@ -5,7 +5,12 @@ import api from '../utils/api';
 import BookDetail from './BookDetail';
 
 const Wrapper = styled.section`
-  color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: row;
+  flex-wrap: wrap;
 `;
 
 class Results extends Component {
@@ -27,11 +32,7 @@ class Results extends Component {
   }
 
   render() {
-    return (
-      <Wrapper>
-        <div>{this.state.books.map(book => <BookDetail key={uuid()} book={book} />)}</div>
-      </Wrapper>
-    );
+    return <Wrapper>{this.state.books.map(book => <BookDetail key={uuid()} book={book} />)}</Wrapper>;
   }
 }
 
