@@ -22,17 +22,7 @@ class Results extends Component {
   }
 
   render() {
-    return (
-      <div className="results">
-        <ul>
-          {this.state.books.map(book => (
-            <li key={uuid()}>
-              <BookDetail book={book} />
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
+    return <div className="results">{this.state.books.map(book => <BookDetail key={uuid()} book={book} />)}</div>;
   }
 }
 
