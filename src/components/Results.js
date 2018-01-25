@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import uuid from 'uuid';
 import api from '../utils/api';
+import BookDetail from './BookDetail';
 
 class Results extends Component {
   constructor(props) {
@@ -20,7 +22,17 @@ class Results extends Component {
   }
 
   render() {
-    return <ul>{this.state.books.map(book => <li>{book.author}</li>)}</ul>;
+    return (
+      <div className="results">
+        <ul>
+          {this.state.books.map(book => (
+            <li key={uuid()}>
+              <BookDetail book={book} />
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
   }
 }
 
