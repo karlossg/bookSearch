@@ -18,7 +18,7 @@ class Results extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      books: [],
+      books: {},
       pageOfItems: []
     };
 
@@ -32,10 +32,15 @@ class Results extends Component {
 
   componentWillMount() {
     api.getBooks('język').then(resp => {
-      console.log(resp.data);
+      const arr = resp.data.map(item => {
+        console.log(item);
+        return [item.title, item.author];
+      });
+      console.log(arr);
+
       this.setState(function() {
         return {
-          books: resp.data
+          books: arr
         };
       });
     });
