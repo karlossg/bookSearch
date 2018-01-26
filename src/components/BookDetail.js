@@ -26,7 +26,6 @@ class BookDetail extends Component {
   }
 
   render() {
-    // console.log(this.props);
     return (
       <Wrapper>
         <Image alt={`${this.props.book.cover} Show Poster`} src={`${this.props.book.cover}`} />
@@ -41,9 +40,7 @@ class BookDetail extends Component {
           </p>
           <p>przedmiot: {this.props.book.subject}</p>
           <p>rodzaj: {this.props.book.type}</p>
-          <a href={this.props.book.url} target="_blank">
-            Przejdź do księgarni
-          </a>
+          <button onClick={() => window.open(`${this.props.book.url}`, '_blank')}>Przejdź do księgarni</button>
         </div>
       </Wrapper>
     );
