@@ -1,33 +1,15 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
-import uuid from 'uuid';
+// import styled from 'styled-components';
+// import uuid from 'uuid';
 import api from '../utils/api';
-import BookDetail from './BookDetail';
-import Pagination from './Pagination';
-
-const Wrapper = styled.section`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  flex-direction: row;
-  flex-wrap: wrap;
-`;
+import BooksList from './BooksList';
 
 class Results extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      books: [],
-      pageOfItems: []
+      books: []
     };
-
-    this.onChangePage = this.onChangePage.bind(this);
-  }
-
-  onChangePage(pageOfItems) {
-    // update state with new page of items
-    this.setState({ pageOfItems: pageOfItems });
   }
 
   componentDidMount() {
@@ -43,10 +25,7 @@ class Results extends Component {
   render() {
     return (
       <div>
-        <Wrapper>
-          {this.state.books.map(item => <BookDetail key={uuid()} book={item} />)}
-          <Pagination items={this.state.books} onChangePage={this.onChangePage} />
-        </Wrapper>
+        <BooksList books={this.state.books} />
       </div>
     );
   }

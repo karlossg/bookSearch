@@ -26,7 +26,7 @@ class BookDetail extends Component {
   }
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <Wrapper>
         <Image alt={`${this.props.book.cover} Show Poster`} src={`${this.props.book.cover}`} />

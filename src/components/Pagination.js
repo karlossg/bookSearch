@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
+var a = {
+  cursor: 'pointer'
+};
+
 class Pagination extends Component {
   constructor(props) {
     super(props);
@@ -10,6 +14,7 @@ class Pagination extends Component {
 
   componentWillMount() {
     // set page if items array isn't empty
+
     if (this.props.items && this.props.items.length) {
       this.setPage(this.props.initialPage);
     }
@@ -32,7 +37,7 @@ class Pagination extends Component {
 
     // get new pager object for specified page
     pager = this.getPager(items.length, page);
-
+    console.log(pager);
     // get new page of items from items array
     var pageOfItems = items.slice(pager.startIndex, pager.endIndex + 1);
 
@@ -48,7 +53,7 @@ class Pagination extends Component {
     currentPage = currentPage || 1;
 
     // default page size is 10
-    pageSize = pageSize || 6;
+    pageSize = pageSize || 3;
 
     // calculate total pages
     var totalPages = Math.ceil(totalItems / pageSize);
@@ -96,14 +101,14 @@ class Pagination extends Component {
   render() {
     // console.log(this.props);
     var pager = this.state.pager;
-
+    console.log(pager);
     if (!pager.pages || pager.pages.length <= 1) {
       // don't display pager if there is only 1 page
       return null;
     }
 
     return (
-      <ul className="pagination">
+      <ul className="pagination" style={a}>
         <li className={pager.currentPage === 1 ? 'disabled' : ''}>
           <a onClick={() => this.setPage(1)}>First</a>
         </li>
