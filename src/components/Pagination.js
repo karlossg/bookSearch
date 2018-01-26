@@ -94,7 +94,7 @@ class Pagination extends Component {
   }
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     var pager = this.state.pager;
 
     if (!pager.pages || pager.pages.length <= 1) {

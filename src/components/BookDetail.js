@@ -26,6 +26,7 @@ class BookDetail extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <Wrapper>
         <Image alt={`${this.props.book.cover} Show Poster`} src={`${this.props.book.cover}`} />
@@ -36,7 +37,7 @@ class BookDetail extends Component {
           <p>MEN: {this.props.book.men}</p>
           <p>liczba stron: {this.props.book.pages_count}</p>
           <p>
-            poziom: {this.props.book.levels[0].school} / {this.props.book.levels[0].class}
+            poziom: {this.props.book.school} / {this.props.book.class}
           </p>
           <p>przedmiot: {this.props.book.subject}</p>
           <p>rodzaj: {this.props.book.type}</p>
