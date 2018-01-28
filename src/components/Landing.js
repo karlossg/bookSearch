@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import api from '../utils/api';
+import Results from './Results';
 
 class Landing extends Component {
   constructor(props) {
@@ -10,43 +11,45 @@ class Landing extends Component {
       value: '',
       books: []
     };
+
+    this.onValueChange = this.onValueChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(event) {
-    event.preventDefault();
+
     api.getBooks(this.state.value).then(resp => {
-      console.log(resp)
-      // this.setState(() => {
-      //   return {
-      //     books: resp
-      //   };
-      // });
+      this.setState({ books: resp });
     });
+    event.preventDefault();
+
   }
 
   onValueChange(event) {
+    this.setState({ value: event.target.value });
+    api.getBooks(event.target.value).then(resp => {
+      this.setState({ books: resp });
+    });
     event.preventDefault();
-    console.log(event.value)
-    // this.setState((event) => {
-    //   return {
-    //     value: event.target.value
-    //   }
-    // })
   }
 
   render() {
     return (
-      <form onSubmit={() => this.handleSubmit}>
-        <input
-          type="text"
-          placeholder="search for books"
-          value={this.state.value}
-          onChange={this.onValueChange.bind(this)} />
-        <Link to={{
-          pathname: '/result',
-          state: { books: this.props.books }
-        }} />
-      </form>
+
+      <div className="landing">
+        <h1>bookSearch</h1>
+        <h5>Gdańskie Wydawnictwo Oświatowe API</h5>
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            placeholder="search for books"
+            value={this.state.value}
+            onChange={this.onValueChange} />
+
+        </form>
+        {this.state.books &&
+          <Results books={this.state.books} />}
+      </div>
     );
   }
 }
