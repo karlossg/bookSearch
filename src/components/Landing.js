@@ -17,16 +17,29 @@ class Landing extends Component {
   }
 
   onValueChange(event) {
-    // console.log(this.state.value);
+    if (event.charCode === 8) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    console.log(event.type);
     this.setState({ value: event.target.value });
     this.getBooks(event.target.value);
     // console.log(this.state.value);
   }
 
+  handleKeyDown(event) {
+    if (event.charCode === 8) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  }
+
   getBooks(value) {
-    api.getBooks(value).then(resp => {
-      this.setState({ books: resp });
-    });
+    if (value.length > 4) {
+      api.getBooks(value).then(resp => {
+        this.setState({ books: resp });
+      });
+    }
   }
 
   render() {
@@ -37,9 +50,15 @@ class Landing extends Component {
         <h1>bookSearch</h1>
         <h5>Gdańskie Wydawnictwo Oświatowe API</h5>
         <form>
-          <input type="text" placeholder="search for books" value={this.state.value} onChange={this.onValueChange} />
+          <input
+            type="text"
+            placeholder="search for books"
+            value={this.state.value}
+            onChange={this.onValueChange}
+            onKeyDown={this.handleKeyDown}
+          />
         </form>
-        <Results books={books} />
+        {books && <Results books={books} />}
       </div>
     );
   }
