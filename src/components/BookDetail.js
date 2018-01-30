@@ -22,9 +22,19 @@ const Button = styled.button`
   background-color: #d34e00;
   color: white;
   border: none;
-  width: 250px;
+  width: 200px;
   height: 35px;
   cursor: pointer;
+  font-size: 15px;
+  font-weight: 400;
+`;
+
+const Title = styled.h1`
+  font-size: 25px;
+`;
+
+const Span = styled.span`
+  font-weight: bold;
 `;
 
 class BookDetail extends Component {
@@ -37,16 +47,26 @@ class BookDetail extends Component {
       <Wrapper>
         <Image alt={`${this.props.book.cover} Show Poster`} src={`${this.props.book.cover}`} />
         <div>
-          <h3>{this.props.book.title}</h3>
+          <Title>{this.props.book.title}</Title>
           <h4>({this.props.book.author})</h4>
-          <p>ISBN: {this.props.book.isbn}</p>
-          <p>MEN: {this.props.book.men}</p>
-          <p>liczba stron: {this.props.book.pages_count}</p>
           <p>
-            poziom: {this.props.book.school} / {this.props.book.class}
+            <Span>ISBN:</Span> {this.props.book.isbn}
           </p>
-          <p>przedmiot: {this.props.book.subject}</p>
-          <p>rodzaj: {this.props.book.type}</p>
+          <p>
+            <Span>MEN:</Span> {this.props.book.men}
+          </p>
+          <p>
+            <Span>liczba stron:</Span> {this.props.book.pages_count}
+          </p>
+          <p>
+            <Span>poziom:</Span> {this.props.book.school} / {this.props.book.class}
+          </p>
+          <p>
+            <Span>przedmiot:</Span> {this.props.book.subject}
+          </p>
+          <p>
+            <Span>rodzaj:</Span> {this.props.book.type}
+          </p>
           <Button onClick={() => window.open(`${this.props.book.url}`, '_blank')}>Przejdź do księgarni</Button>
         </div>
       </Wrapper>

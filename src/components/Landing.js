@@ -5,11 +5,18 @@ import BooksList from './BooksList';
 
 const Wrapper = styled.section`
   text-align: center;
-  font-family: 'Opens Sans';
+  font-family: Open Sans, sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu,
+    Cantarell, Helvetica Neue;
+  background-color: #d34e00;
+  color: white;
+  width: 60%;
 `;
 
 const Input = styled.input`
   margin-bottom: 15px;
+  border: none;
+  width: 200px;
+  height: 30px;
 `;
 class Landing extends Component {
   constructor(props) {
@@ -45,14 +52,16 @@ class Landing extends Component {
     const books = this.state.books;
 
     return (
-      <Wrapper>
-        <h1>bookSearch</h1>
-        <h5>Gdańskie Wydawnictwo Oświatowe API</h5>
+      <div>
+        <Wrapper>
+          <h1>bookSearch</h1>
+          <h3>Gdańskie Wydawnictwo Oświatowe API</h3>
 
-        <Input type="text" placeholder="search for books" value={this.state.value} onChange={this.onValueChange} />
+          <Input type="text" placeholder="search for books" value={this.state.value} onChange={this.onValueChange} />
+        </Wrapper>
 
         {books && <BooksList books={books} />}
-      </Wrapper>
+      </div>
     );
   }
 }

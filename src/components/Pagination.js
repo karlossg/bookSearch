@@ -7,9 +7,12 @@ const List = styled.ul`
   cursor: pointer;
   list-style-type: none;
   display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #d34e00;
   color: white;
   font-size: 20px;
+  width: 100%;
 `;
 
 const Link = styled.a`
