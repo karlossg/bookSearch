@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import uuid from 'uuid';
-// import api from '../utils/api';
 import BookDetail from './BookDetail';
 import Pagination from './Pagination';
 
@@ -9,11 +9,11 @@ const Wrapper = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
 `;
 
-class Results extends Component {
+class BooksList extends Component {
   constructor(props) {
     super(props);
 
@@ -25,7 +25,6 @@ class Results extends Component {
   }
 
   onChangePage(pageOfItems) {
-    // update state with new page of items
     this.setState({ pageOfItems: pageOfItems });
   }
 
@@ -41,4 +40,8 @@ class Results extends Component {
   }
 }
 
-export default Results;
+BooksList.propTypes = {
+  books: PropTypes.array.isRequired
+};
+
+export default BooksList;

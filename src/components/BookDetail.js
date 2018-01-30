@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Wrapper = styled.section`
-  width: 32%;
-  height: 400px;
-  border: 2px solid #333;
-  border-radius: 4px;
+  width: 60%;
   margin-bottom: 25px;
   padding-right: 10px;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.12), 0 1px 2px 1px rgba(0, 0, 0, 0.24);
   overflow: hidden;
   color: black;
   text-decoration: none;
 `;
 
 const Image = styled.img`
-  width: 40%;
-  height: 300px;
   float: left;
   margin-right: 10px;
+  padding: 10px;
 `;
 
 class BookDetail extends Component {
@@ -46,5 +44,21 @@ class BookDetail extends Component {
     );
   }
 }
+
+BookDetail.propTypes = {
+  book: PropTypes.shape({
+    cover: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    isbn: PropTypes.string.isRequired,
+    men: PropTypes.string.isRequired,
+    pages_count: PropTypes.number.isRequired,
+    school: PropTypes.string.isRequired,
+    class: PropTypes.string.isRequired,
+    subject: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired
+  })
+};
 
 export default BookDetail;

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-// import _ from 'lodash';
-// import { Link } from 'react-router-dom';
-// import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import api from '../utils/api';
-// import Results from './Results';
 import BooksList from './BooksList';
+
+const Wrapper = styled.section`
+  text-align: center;
+`;
 
 class Landing extends Component {
   constructor(props) {
@@ -18,21 +19,14 @@ class Landing extends Component {
   }
 
   onValueChange(event) {
-    if (event.charCode === 8) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-    console.log(event.type);
-    this.setState({ value: event.target.value });
-    this.getBooks(event.target.value);
-    // console.log(this.state.value);
-  }
-
-  handleKeyDown(event) {
-    if (event.charCode === 8) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
+    event.preventDefault();
+    let value = event.target.value;
+    this.setState((state, event) => {
+      return { value };
+    });
+    setTimeout(() => {
+      this.getBooks(value);
+    }, 1500);
   }
 
   getBooks(value) {
@@ -44,27 +38,19 @@ class Landing extends Component {
   }
 
   render() {
-    let books = this.state.books;
+    const books = this.state.books;
 
     return (
-      <div className="landing">
+      <Wrapper>
         <h1>bookSearch</h1>
         <h5>Gdańskie Wydawnictwo Oświatowe API</h5>
-        <form>
-          <input
-            type="text"
-            placeholder="search for books"
-            value={this.state.value}
-            onChange={this.onValueChange}
-            onKeyDown={this.handleKeyDown}
-          />
-        </form>
+
+        <input type="text" placeholder="search for books" value={this.state.value} onChange={this.onValueChange} />
+
         {books && <BooksList books={books} />}
-      </div>
+      </Wrapper>
     );
   }
 }
-
-// Landing.propTypes = {};
 
 export default Landing;

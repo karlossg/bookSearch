@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import _ from 'lodash';
 
-var a = {
-  cursor: 'pointer'
-};
+const List = styled.ul`
+  cursor: pointer;
+  list-style-type: none;
+  display: flex;
+  background-color: orange;
+  color: white;
+  font-size: 20px;
+`;
 
+const Link = styled.a`
+  margin: 5px;
+`;
 class Pagination extends Component {
   constructor(props) {
     super(props);
@@ -28,8 +37,8 @@ class Pagination extends Component {
   }
 
   setPage(page) {
-    var items = this.props.items;
-    var pager = this.state.pager;
+    const items = this.props.items;
+    let pager = this.state.pager;
 
     if (page < 1 || page > pager.totalPages) {
       return;
@@ -39,7 +48,7 @@ class Pagination extends Component {
     pager = this.getPager(items.length, page);
     console.log(pager);
     // get new page of items from items array
-    var pageOfItems = items.slice(pager.startIndex, pager.endIndex + 1);
+    const pageOfItems = items.slice(pager.startIndex, pager.endIndex + 1);
 
     // update state
     this.setState({ pager: pager });
@@ -56,9 +65,9 @@ class Pagination extends Component {
     pageSize = pageSize || 3;
 
     // calculate total pages
-    var totalPages = Math.ceil(totalItems / pageSize);
+    const totalPages = Math.ceil(totalItems / pageSize);
 
-    var startPage, endPage;
+    let startPage, endPage;
     if (totalPages <= 10) {
       // less than 10 total pages so show all
       startPage = 1;
@@ -78,11 +87,11 @@ class Pagination extends Component {
     }
 
     // calculate start and end item indexes
-    var startIndex = (currentPage - 1) * pageSize;
-    var endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
 
     // create an array of pages to ng-repeat in the pager control
-    var pages = _.range(startPage, endPage + 1);
+    const pages = _.range(startPage, endPage + 1);
 
     // return object with all pager properties required by the view
     return {
@@ -99,7 +108,7 @@ class Pagination extends Component {
   }
 
   render() {
-    var pager = this.state.pager;
+    const pager = this.state.pager;
 
     if (!pager.pages || pager.pages.length <= 1) {
       // don't display pager if there is only 1 page
@@ -107,25 +116,25 @@ class Pagination extends Component {
     }
 
     return (
-      <ul className="pagination" style={a}>
+      <List className="pagination">
         <li className={pager.currentPage === 1 ? 'disabled' : ''}>
-          <a onClick={() => this.setPage(1)}>First</a>
+          <Link onClick={() => this.setPage(1)}>First</Link>
         </li>
         <li className={pager.currentPage === 1 ? 'disabled' : ''}>
-          <a onClick={() => this.setPage(pager.currentPage - 1)}>Previous</a>
+          <Link onClick={() => this.setPage(pager.currentPage - 1)}>Previous</Link>
         </li>
         {pager.pages.map((page, index) => (
           <li key={index} className={pager.currentPage === page ? 'active' : ''}>
-            <a onClick={() => this.setPage(page)}>{page}</a>
+            <Link onClick={() => this.setPage(page)}>{page}</Link>
           </li>
         ))}
         <li className={pager.currentPage === pager.totalPages ? 'disabled' : ''}>
-          <a onClick={() => this.setPage(pager.currentPage + 1)}>Next</a>
+          <Link onClick={() => this.setPage(pager.currentPage + 1)}>Next</Link>
         </li>
         <li className={pager.currentPage === pager.totalPages ? 'disabled' : ''}>
-          <a onClick={() => this.setPage(pager.totalPages)}>Last</a>
+          <Link onClick={() => this.setPage(pager.totalPages)}>Last</Link>
         </li>
-      </ul>
+      </List>
     );
   }
 }
