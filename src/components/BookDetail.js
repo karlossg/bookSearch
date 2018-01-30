@@ -18,6 +18,15 @@ const Image = styled.img`
   padding: 10px;
 `;
 
+const Button = styled.button`
+  background-color: #d34e00;
+  color: white;
+  border: none;
+  width: 250px;
+  height: 35px;
+  cursor: pointer;
+`;
+
 class BookDetail extends Component {
   shouldComponentUpdate() {
     return false;
@@ -38,7 +47,7 @@ class BookDetail extends Component {
           </p>
           <p>przedmiot: {this.props.book.subject}</p>
           <p>rodzaj: {this.props.book.type}</p>
-          <button onClick={() => window.open(`${this.props.book.url}`, '_blank')}>Przejdź do księgarni</button>
+          <Button onClick={() => window.open(`${this.props.book.url}`, '_blank')}>Przejdź do księgarni</Button>
         </div>
       </Wrapper>
     );

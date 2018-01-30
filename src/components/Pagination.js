@@ -7,7 +7,7 @@ const List = styled.ul`
   cursor: pointer;
   list-style-type: none;
   display: flex;
-  background-color: orange;
+  background-color: #d34e00;
   color: white;
   font-size: 20px;
 `;

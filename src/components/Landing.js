@@ -5,8 +5,12 @@ import BooksList from './BooksList';
 
 const Wrapper = styled.section`
   text-align: center;
+  font-family: 'Opens Sans';
 `;
 
+const Input = styled.input`
+  margin-bottom: 15px;
+`;
 class Landing extends Component {
   constructor(props) {
     super(props);
@@ -45,7 +49,7 @@ class Landing extends Component {
         <h1>bookSearch</h1>
         <h5>Gdańskie Wydawnictwo Oświatowe API</h5>
 
-        <input type="text" placeholder="search for books" value={this.state.value} onChange={this.onValueChange} />
+        <Input type="text" placeholder="search for books" value={this.state.value} onChange={this.onValueChange} />
 
         {books && <BooksList books={books} />}
       </Wrapper>
