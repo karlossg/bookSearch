@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import api from '../utils/api';
-import Results from './Results';
+// import Results from './Results';
+import BooksList from './BooksList';
 
 class Landing extends Component {
   constructor(props) {
@@ -58,7 +59,7 @@ class Landing extends Component {
             onKeyDown={this.handleKeyDown}
           />
         </form>
-        {books && <Results books={books} />}
+        {books && <BooksList books={books} />}
       </div>
     );
   }
