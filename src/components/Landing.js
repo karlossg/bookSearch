@@ -55,7 +55,7 @@ class Landing extends Component {
 
   render() {
     const books = this.state.books;
-
+    const value = this.state.value;
     return (
       <div>
         <Wrapper>
@@ -65,7 +65,7 @@ class Landing extends Component {
           <Input type="text" placeholder="search for books" value={this.state.value} onChange={this.onValueChange} />
         </Wrapper>
 
-        {books && <BooksList books={books} />}
+        {books && <BooksList value={value} books={books} />}
       </div>
     );
   }

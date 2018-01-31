@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { BounceLoader } from 'react-spinners';
 import PropTypes from 'prop-types';
 import uuid from 'uuid';
 import BookDetail from './BookDetail';
@@ -11,6 +12,10 @@ const Wrapper = styled.section`
   justify-content: center;
   flex-direction: column;
   flex-wrap: wrap;
+`;
+
+const Loader = styled.div`
+  margin-top: 30px;
 `;
 
 class BooksList extends Component {
@@ -32,6 +37,12 @@ class BooksList extends Component {
     return (
       <div>
         <Wrapper>
+          {this.props.books.length < 1 &&
+            this.props.value.length > 0 && (
+              <Loader>
+                <BounceLoader color={'#d34e00'} size={150} loading={this.state.loading} />
+              </Loader>
+            )}
           {this.state.pageOfItems.map(item => <BookDetail key={uuid()} book={item} />)}
           <Pagination items={this.props.books} onChangePage={this.onChangePage} />
         </Wrapper>
