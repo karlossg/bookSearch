@@ -15,7 +15,7 @@ const Wrapper = styled.section`
 `;
 
 const Loader = styled.div`
-  margin-top: 30px;
+  margin-top: 60px;
 `;
 
 class BooksList extends Component {

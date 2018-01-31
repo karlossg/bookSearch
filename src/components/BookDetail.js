@@ -27,6 +27,7 @@ const Button = styled.button`
   cursor: pointer;
   font-size: 15px;
   font-weight: 400;
+  margin: 150px 0 10px 0;
 `;
 
 const Title = styled.h1`
