@@ -1,4 +1,4 @@
-Booking search App made for recruitin, using API of Gdańskie Wydawnictwo Oświatowe
+Books search App made for recruitin, using API of Gdańskie Wydawnictwo Oświatowe
 Technology used:<br>
 React,<br>
 React router,<br>
