@@ -1,8 +1,8 @@
 Booking search App made for recruitin, using API of Gdańskie Wydawnictwo Oświatowe
-Technology used:
-React,
-React router,
-Styled components,
-Redux,
-Redux thunk,
+Technology used:<br>
+React,<br>
+React router,<br>
+Styled components,<br>
+Redux,<br>
+Redux thunk,<br>
 Axios
