@@ -6,6 +6,6 @@ export default () => injectGlobal`
 
   body {
     padding: 0;
-    background-color: black;
-  }
+    background-color:white;
+}
 `;

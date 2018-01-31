@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const Wrapper = styled.section`
-  width: 60%;
-  margin-bottom: 25px;
+  width: 59.4%;
+  margin-bottom: 5px;
   padding-right: 10px;
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.12), 0 1px 2px 1px rgba(0, 0, 0, 0.24);
   overflow: hidden;

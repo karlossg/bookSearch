@@ -10,6 +10,11 @@ const Wrapper = styled.section`
   background-color: #d34e00;
   color: white;
   width: 60%;
+  margin: 0 20% 1% 20%;
+`;
+
+const Title = styled.h1`
+  margin-top: 0;
 `;
 
 const Input = styled.input`
@@ -54,7 +59,7 @@ class Landing extends Component {
     return (
       <div>
         <Wrapper>
-          <h1>bookSearch</h1>
+          <Title>bookSearch</Title>
           <h3>Gdańskie Wydawnictwo Oświatowe API</h3>
 
           <Input type="text" placeholder="search for books" value={this.state.value} onChange={this.onValueChange} />
