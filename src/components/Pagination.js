@@ -12,7 +12,7 @@ const List = styled.ul`
   background-color: #d34e00;
   color: white;
   font-size: 20px;
-  width: 100%;
+  width: 60%;
 `;
 
 const Link = styled.a`
