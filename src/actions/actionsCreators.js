@@ -1,8 +1,8 @@
-import { SET_SEARCH_TERM } from './actions';
+import { GET_BOOKS } from './actions';
 
-export default function setSearchTerm(searchTerm) {
+export default function setSearchTerm(books) {
   return {
-    type: SET_SEARCH_TERM,
-    searchTerm
+    type: GET_BOOKS,
+    books
   };
 }

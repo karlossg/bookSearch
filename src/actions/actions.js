@@ -1,1 +1,1 @@
-export const SET_SEARCH_TERM = 'SET_SEARCH_TERM';
+export const GET_BOOKS = 'GET_BOOKS';

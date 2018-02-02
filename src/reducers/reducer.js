@@ -1,18 +1,18 @@
 import { combineReducers } from 'redux';
-import { SET_SEARCH_TERM } from '../actions/actions';
+import { GET_BOOKS } from '../actions/actions';
 
-const searchTerm = (state = '', action) => {
-  if (action.type === SET_SEARCH_TERM) {
+const getBooks = (state = [], action) => {
+  if (action.type === GET_BOOKS) {
     return [
       ...state,
       {
-        searchTerm: action.searchTerm
+        books: action.books
       }
     ];
   }
   return state;
 };
 
-const reducer = combineReducers({ searchTerm });
+const reducer = combineReducers({ getBooks });
 
 export default reducer;
