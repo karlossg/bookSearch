@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import api from '../utils/api';
-import BooksList from './BooksList';
+import BooksList from '../components/BooksList';
 
 const Wrapper = styled.section`
   text-align: center;
@@ -23,7 +23,7 @@ const Input = styled.input`
   width: 200px;
   height: 30px;
 `;
-class Landing extends Component {
+class BooksListContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -71,4 +71,4 @@ class Landing extends Component {
   }
 }
 
-export default Landing;
+export default BooksListContainer;
