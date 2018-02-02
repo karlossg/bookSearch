@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import api from '../utils/api';
+import store from '../store/store';
 import BooksList from './BooksList';
+import getBooksAction from '../actions/actionsCreators';
 
 const Wrapper = styled.section`
   text-align: center;
@@ -29,8 +31,8 @@ class Landing extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: '',
-      books: []
+      value: ''
+      // books: []
     };
 
     this.onValueChange = this.onValueChange.bind(this);
@@ -50,13 +52,13 @@ class Landing extends Component {
   getBooks(value) {
     if (value.length > 4) {
       api.getBooks(value).then(resp => {
-        this.setState({ books: resp });
+        this.props.dispatch(getBooksAction(resp));
       });
     }
   }
 
   render() {
-    const books = this.state.books;
+    const books = this.props.books;
     const value = this.state.value;
     return (
       <div>
@@ -73,4 +75,10 @@ class Landing extends Component {
   }
 }
 
-export default Landing;
+const mapStateToProps = store => {
+  return {
+    books: store.reducer.books
+  };
+};
+
+export default connect(mapStateToProps)(Landing);

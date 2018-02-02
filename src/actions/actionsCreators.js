@@ -1,6 +1,6 @@
 import { GET_BOOKS } from './actions';
 
-export default function setSearchTerm(books) {
+export default function getBooksActions(books) {
   return {
     type: GET_BOOKS,
     books
