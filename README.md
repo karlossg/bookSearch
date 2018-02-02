@@ -4,5 +4,4 @@ React,<br>
 React router,<br>
 Styled components,<br>
 Redux,<br>
-Redux thunk,<br>
-Axios
+Axios<br>
