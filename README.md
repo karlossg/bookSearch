@@ -5,3 +5,9 @@ React router,<br>
 Styled components,<br>
 Redux,<br>
 Axios<br>
+
+INSTALATION:
+clone repo
+npm install
+yarn
+yarn start
