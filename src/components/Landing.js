@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import reducer from '../reducers/reducer';
+import setSearchTerm from '../actions/actionsCreators';
 import api from '../utils/api';
 import BooksList from './BooksList';
 
@@ -24,6 +26,7 @@ const Input = styled.input`
   width: 200px;
   height: 30px;
 `;
+
 class Landing extends Component {
   constructor(props) {
     super(props);
@@ -38,9 +41,10 @@ class Landing extends Component {
   onValueChange(event) {
     event.preventDefault();
     let value = event.target.value;
-    this.setState((state, event) => {
-      return { value };
-    });
+    this.props.setSearchTerm(value);
+    // this.setState((state, event) => {
+    //   return { value };
+    // });
     setTimeout(() => {
       this.getBooks(value);
     }, 1500);
@@ -56,20 +60,34 @@ class Landing extends Component {
 
   render() {
     const books = this.state.books;
-    const value = this.state.value;
+    // const value = this.props.value;
     return (
       <div>
         <Wrapper>
           <Title>bookSearch</Title>
           <h3>Gdańskie Wydawnictwo Oświatowe API</h3>
 
-          <Input type="text" placeholder="search for books" value={this.state.value} onChange={this.onValueChange} />
+          <Input type="text" placeholder="search for books" value={this.props.value} onChange={this.onValueChange} />
         </Wrapper>
 
-        {books && <BooksList value={value} books={books} />}
+        {books && <BooksList value={this.props.value} books={books} />}
       </div>
     );
   }
 }
 
-export default Landing;
+const mapDispatchToProps = dispatch => {
+  return {
+    setSearchTerm: value => {
+      dispatch(setSearchTerm(value));
+    }
+  };
+};
+
+const mapStateToProps = function(store) {
+  return {
+    searchTerm: reducer.searchTerm
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Landing);
