@@ -61,8 +61,9 @@ class BooksListContainer extends Component {
         <Wrapper>
           <Title>bookSearch</Title>
           <h3>Gdańskie Wydawnictwo Oświatowe API</h3>
-
-          <Input type="text" placeholder="search for books" value={this.state.value} onChange={this.onValueChange} />
+          <form onChange={this.onValueChange}>
+            <Input type="text" placeholder="search for books" value={this.state.value} minLeng="3" maxlength="12" />
+          </form>
         </Wrapper>
 
         {books && <BooksList value={value} books={books} />}

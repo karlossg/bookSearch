@@ -14,12 +14,10 @@ const render = () => {
   ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
-        <div className="app">
-          <Switch>
-            <Route exact path="/" component={BooksListContainer} />
-            <Route component={FourOhFour} />
-          </Switch>
-        </div>
+        <Switch>
+          <Route exact path="/" component={BooksListContainer} />
+          <Route component={FourOhFour} />
+        </Switch>
       </BrowserRouter>
     </Provider>,
     document.getElementById('root')
