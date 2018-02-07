@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types'
 import getBooksIfNeeded from '../actions/actionsCreators'
 import BooksList from '../components/BooksList';
@@ -27,7 +27,8 @@ const Input = styled.input`
 `;
 
 class BooksListContainer extends Component {
-  onValueChange = event => {
+
+  onValueChange = (event) => {
     event.preventDefault();
     let value = event.target.value;
     this.props.dispatch(getBooksIfNeeded(value))

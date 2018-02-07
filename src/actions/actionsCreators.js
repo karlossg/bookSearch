@@ -1,10 +1,16 @@
 import axios from 'axios';
-import { REQUEST_BOOKS, RECEIVE_BOOKS } from './actions'
+import { REQUEST_BOOKS, RECEIVE_BOOKS } from './actions';
+import _ from 'lodash';
 
 function requestBooks(searchValue) {
   return {
     type: REQUEST_BOOKS,
-    searchValue
+    searchValue,
+    meta: {
+      debounce: {
+        time: 300
+      }
+    }
   }
 }
 
@@ -55,7 +61,7 @@ function shouldGetBooks(state) {
 export default function getBooksIfNeeded(searchValue) {
   return (dispatch, getState) => {
     if (shouldGetBooks(getState())) {
-      return dispatch(getBooks(searchValue))
+      return dispatch(_.debounce(getBooks(searchValue)), 2000)
     }
   }
 }
