@@ -52,7 +52,7 @@ function shouldGetBooks(state) {
   }
 }
 
-export function getBooksIfNeeded(searchValue) {
+export default function getBooksIfNeeded(searchValue) {
   return (dispatch, getState) => {
     if (shouldGetBooks(getState())) {
       return dispatch(getBooks(searchValue))

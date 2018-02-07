@@ -26,10 +26,9 @@ class BooksList extends Component {
       pageOfItems: []
     };
 
-    this.onChangePage = this.onChangePage.bind(this);
   }
 
-  onChangePage(pageOfItems) {
+  onChangePage = pageOfItems => {
     this.setState({ pageOfItems: pageOfItems });
   }
 
@@ -37,14 +36,13 @@ class BooksList extends Component {
     return (
       <div>
         <Wrapper>
-          {this.props.books.length < 1 &&
-            this.props.value.length > 0 && (
-              <Loader>
-                <BounceLoader color={'#d34e00'} size={150} loading={this.state.loading} />
-              </Loader>
-            )}
-          {this.state.pageOfItems.map(item => <BookDetail key={uuid()} book={item} />)}
-          <Pagination items={this.props.books} onChangePage={this.onChangePage} />
+          {this.props.isFetching && (
+            <Loader>
+              <BounceLoader color={'#d34e00'} size={150} loading={this.state.loading} />
+            </Loader>
+          )}
+          {!this.props.isFetching && this.state.pageOfItems.map(item => <BookDetail key={uuid()} book={item} />)}
+          {!this.props.isFetching && <Pagination items={this.props.books} onChangePage={this.onChangePage} />}
         </Wrapper>
       </div>
     );

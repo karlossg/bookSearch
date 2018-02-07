@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import api from '../utils/api';
+import getBooksIfNeeded from '../actions/actionsCreators'
 import BooksList from '../components/BooksList';
 
 const Wrapper = styled.section`
@@ -27,47 +27,23 @@ const Input = styled.input`
 `;
 
 class BooksListContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: '',
-      books: []
-    };
-  }
-
   onValueChange = event => {
     event.preventDefault();
     let value = event.target.value;
-    this.setState((state, event) => {
-      return { value };
-    });
-    this.getBooks(value);
-
-  }
-
-  getBooks = value => {
-    if (value.length > 4) {
-      api.getBooks(value).then(resp => {
-        this.setState({ books: resp });
-      });
-    }
+    this.props.dispatch(getBooksIfNeeded(value))
   }
 
   render() {
-    const { books, value } = this.state;
-    console.log(this.props)
     return (
-
       <div>
         <Wrapper>
           <Title>bookSearch</Title>
           <h3>Gdańskie Wydawnictwo Oświatowe API</h3>
           <form onChange={this.onValueChange}>
-            <Input type="text" placeholder="search for books" value={this.state.value} minLength="3" maxLength="12" />
+            <Input type="text" placeholder="search for books" value={this.props.value} minLength="3" maxLength="12" />
           </form>
         </Wrapper>
-
-        {books && <BooksList value={value} books={books} />}
+        <BooksList isFetching={this.props.isFetching} books={this.props.books} />
       </div>
     );
   }
@@ -81,7 +57,6 @@ BooksListContainer.propTypes = {
 }
 
 const mapStateToProps = store => {
-  console.log(store)
   const { books, searchValue, isFetching } = store.getBooks
 
   return {
@@ -91,5 +66,5 @@ const mapStateToProps = store => {
   }
 }
 
-export default connect(mapStateToProps)(BooksListContainer)
+export default connect(mapStateToProps)(BooksListContainer);
 
