@@ -1,8 +1,11 @@
 import { combineReducers } from 'redux';
-import { GET_BOOKS } from '../actions/actions';
+import { REQUEST_BOOKS, RECEIVE_BOOKS } from '../actions/actions';
+
+
+
 
 const getBooks = (state = [], action) => {
-  if (action.type === GET_BOOKS) {
+  if (action.type === REQUEST_BOOKS) {
     return [
       ...state,
       {

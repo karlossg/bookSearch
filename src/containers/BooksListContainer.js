@@ -31,21 +31,21 @@ class BooksListContainer extends Component {
       books: []
     };
 
-    this.onValueChange = this.onValueChange.bind(this);
+
+
   }
 
-  onValueChange(event) {
+  onValueChange = event => {
     event.preventDefault();
     let value = event.target.value;
     this.setState((state, event) => {
       return { value };
     });
-    setTimeout(() => {
-      this.getBooks(value);
-    }, 1500);
+    this.getBooks(value);
+
   }
 
-  getBooks(value) {
+  getBooks = value => {
     if (value.length > 4) {
       api.getBooks(value).then(resp => {
         this.setState({ books: resp });
@@ -54,8 +54,8 @@ class BooksListContainer extends Component {
   }
 
   render() {
-    const books = this.state.books;
-    const value = this.state.value;
+    const { books, value } = this.state;
+    // const value = this.state.value;
     return (
       <div>
         <Wrapper>
