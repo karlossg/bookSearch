@@ -1,7 +1,5 @@
-const axios = require('axios');
-
-export const REQUEST_BOOKS = 'REQUEST_BOOKS'
-export const RECEIVE_BOOKS = 'RECEIVE_BOOKS'
+import axios from 'axios';
+import { REQUEST_BOOKS, RECEIVE_BOOKS } from './actions'
 
 function requestBooks(searchValue) {
   return {

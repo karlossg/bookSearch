@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import api from '../utils/api';
 import BooksList from '../components/BooksList';
 
@@ -23,6 +25,7 @@ const Input = styled.input`
   width: 200px;
   height: 30px;
 `;
+
 class BooksListContainer extends Component {
   constructor(props) {
     super(props);
@@ -30,9 +33,6 @@ class BooksListContainer extends Component {
       value: '',
       books: []
     };
-
-
-
   }
 
   onValueChange = event => {
@@ -55,7 +55,7 @@ class BooksListContainer extends Component {
 
   render() {
     const { books, value } = this.state;
-    // const value = this.state.value;
+
     return (
       <div>
         <Wrapper>
@@ -72,4 +72,31 @@ class BooksListContainer extends Component {
   }
 }
 
-export default BooksListContainer;
+BooksListContainer.propTypes = {
+  books: PropTypes.array.isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  searchValue: PropTypes.string.isRequired,
+  dispatch: PropTypes.func.isRequired
+}
+
+function mapStateToProps(state) {
+  const { selectedSubreddit, postsBySubreddit } = state
+  const {
+    isFetching,
+    lastUpdated,
+    items: posts
+  } = postsBySubreddit[selectedSubreddit] || {
+      isFetching: true,
+      items: []
+    }
+
+  return {
+    selectedSubreddit,
+    posts,
+    isFetching,
+    lastUpdated
+  }
+}
+
+export default connect(mapStateToProps)(BooksListContainer)
+
