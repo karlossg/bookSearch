@@ -49,7 +49,7 @@ class Pagination extends Component {
 
     // get new pager object for specified page
     pager = this.getPager(items.length, page);
-    console.log(pager);
+
     // get new page of items from items array
     const pageOfItems = items.slice(pager.startIndex, pager.endIndex + 1);
 
