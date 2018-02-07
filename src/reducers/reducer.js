@@ -4,7 +4,7 @@ import { REQUEST_BOOKS, RECEIVE_BOOKS } from '../actions/actions';
 
 const initialState = {
   books: [],
-  serchValue: '',
+  searchValue: '',
   isFetching: false
 }
 

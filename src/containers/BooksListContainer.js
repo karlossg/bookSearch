@@ -55,8 +55,9 @@ class BooksListContainer extends Component {
 
   render() {
     const { books, value } = this.state;
-
+    console.log(this.props)
     return (
+
       <div>
         <Wrapper>
           <Title>bookSearch</Title>
@@ -79,22 +80,14 @@ BooksListContainer.propTypes = {
   dispatch: PropTypes.func.isRequired
 }
 
-function mapStateToProps(state) {
-  const { selectedSubreddit, postsBySubreddit } = state
-  const {
-    isFetching,
-    lastUpdated,
-    items: posts
-  } = postsBySubreddit[selectedSubreddit] || {
-      isFetching: true,
-      items: []
-    }
+const mapStateToProps = store => {
+  console.log(store)
+  const { books, searchValue, isFetching } = store.getBooks
 
   return {
-    selectedSubreddit,
-    posts,
+    books,
     isFetching,
-    lastUpdated
+    searchValue
   }
 }
 
